@@ -41,11 +41,11 @@ public class CsvTest {
     public void setUp() throws SQLException {
         Stream<String[]> streamA = Arrays.asList(new String[]{"Q","R","S"}, new String[]{"aaaa","eeee","yyyy"}, new String[]{"bbbb","ttttt","uuuuuu"},
                 new String[]{"cccc","yyyy","oooo"}).stream();
-        CsvTable tableA = new CsvTable("TableA", Arrays.asList(new CsvField("Q", "string")).stream().toArray(CsvField[]::new), () -> streamA);
+        CsvTable tableA = new CsvTable("TableA", Arrays.asList(new CsvField("Q", "string"),new CsvField("R", "string"),new CsvField("S", "string")).stream().toArray(CsvField[]::new), () -> streamA);
 
         Stream<String[]> streamB = Arrays.asList(new String[]{"A","B","C"}, new String[]{"aaaa","ssss","ppppp"},
                 new String[]{"1111","4444","77777"}, new String[]{"2222","5555","88888"}).stream();
-        CsvTable tableB = new CsvTable("TableB", Arrays.asList(new CsvField("A", "string")).stream().toArray(CsvField[]::new), () -> streamB);
+        CsvTable tableB = new CsvTable("TableB", Arrays.asList(new CsvField("A", "string"),new CsvField("B", "string"),new CsvField("C", "string")).stream().toArray(CsvField[]::new), () -> streamB);
         Properties info = new Properties();
         info.setProperty("lex", "JAVA");
         connection

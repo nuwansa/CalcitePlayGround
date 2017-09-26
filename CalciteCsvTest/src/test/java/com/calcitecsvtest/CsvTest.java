@@ -39,10 +39,12 @@ public class CsvTest {
 
     @Before
     public void setUp() throws SQLException {
-        Stream<String[]> streamA = Arrays.asList(new String[]{"Q"}, new String[]{"aaaa"}, new String[]{"bbbb"}, new String[]{"cccc"}).stream();
+        Stream<String[]> streamA = Arrays.asList(new String[]{"Q","R","S"}, new String[]{"aaaa","eeee","yyyy"}, new String[]{"bbbb","ttttt","uuuuuu"},
+                new String[]{"cccc","yyyy","oooo"}).stream();
         CsvTable tableA = new CsvTable("TableA", Arrays.asList(new CsvField("Q", "string")).stream().toArray(CsvField[]::new), () -> streamA);
 
-        Stream<String[]> streamB = Arrays.asList(new String[]{"A"}, new String[]{"aaaa"}, new String[]{"1111"}, new String[]{"2222"}).stream();
+        Stream<String[]> streamB = Arrays.asList(new String[]{"A","B","C"}, new String[]{"aaaa","ssss","ppppp"},
+                new String[]{"1111","4444","77777"}, new String[]{"2222","5555","88888"}).stream();
         CsvTable tableB = new CsvTable("TableB", Arrays.asList(new CsvField("A", "string")).stream().toArray(CsvField[]::new), () -> streamB);
         Properties info = new Properties();
         info.setProperty("lex", "JAVA");
@@ -77,7 +79,7 @@ public class CsvTest {
                             .append("=")
                             .append(resultSet.getObject(i));
                 }
-                System.out.println(count + " : " + buf.toString());
+                System.out.println(count + " : " +buf.toString());
                 buf.setLength(0);
                 count++;
             }
